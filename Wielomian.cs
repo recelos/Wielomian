@@ -2,44 +2,17 @@
 
 namespace Wielomian
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            //Wielomian dupa = new Wielomian(new int[] { 0, 0, 0, 4, 5, 6});
-
-            //Wielomian cipa = new Wielomian(new int[] { 3, 2, 1, 4, 5, 6 });
-
-            //Wielomian seks = new Wielomian(new int[0]);
-
-            //Wielomian kutas = cipa.DodajWielomian(dupa);
-
-            //dupa.Pomnoz(3);
-
-            //Console.WriteLine(kutas.ToString());
-
-            //Console.WriteLine(dupa.ToString());
-
-            //Console.WriteLine(cipa.ToString());
-
-            Wielomian.Test();
-        }
-    }
-
     public class Wielomian
     {
         private int[] a;
-
         public Wielomian(int[] tab) 
         {
             a = new int[tab.Length];
             Array.Copy(tab, a, tab.Length);
         }
-
         public Wielomian DodajWielomian(Wielomian input)
         {
             Wielomian output = new Wielomian(new int[0]);
-
             if (a.Length == 0)
             {
                 output.a = new int[input.a.Length];
@@ -51,9 +24,16 @@ namespace Wielomian
                 output.a = new int[a.Length];
                 Array.Copy(a, output.a, a.Length);
                 return output;
-            }                                            
-            
-            int shortLength,longLength;
+            }
+            if (a.Length == input.a.Length)
+            {
+                output.a = new int[a.Length];
+                for (int j = 0; j < a.Length; j++)
+                    output.a[j] = a[j] + input.a[j];
+                return output;
+            }
+
+            int shortLength, longLength;
 
             if (a.Length > input.a.Length)
             {
@@ -65,10 +45,10 @@ namespace Wielomian
                 longLength = input.a.Length;
                 shortLength = a.Length;
             }
-                
-            output.a = new int[longLength];
+
+           output.a = new int[longLength];
             int i = 0;
-            for (; i<shortLength;i++) 
+            for (; i < shortLength; i++) 
                 output.a[i] = a[i] + input.a[i];
             for (; i < longLength; i++)
             {
@@ -79,7 +59,6 @@ namespace Wielomian
             } 
             return output;
         }
-
         public Wielomian Pomnoz(int input)
         {
             for(int i = 0; i < a.Length; i++)
@@ -130,9 +109,6 @@ namespace Wielomian
 
             // Czy dodawanie nie zmienia wielomianu?
             Console.WriteLine("tst: w2 = " + w2.ToString());
-
-
         }
-
     }
 }
